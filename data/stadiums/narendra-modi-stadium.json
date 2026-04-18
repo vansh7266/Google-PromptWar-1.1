@@ -1,0 +1,96 @@
+{
+  "slug": "narendra-modi-stadium",
+  "name": "Narendra Modi Stadium",
+  "city": "Ahmedabad",
+  "country": "India",
+  "sport": "Cricket",
+  "tagline": "The world's largest cricket stadium, tuned for massive matchday flow.",
+  "lat": 23.0927,
+  "lng": 72.596,
+  "capacity": 132000,
+  "timeZone": "Asia/Kolkata",
+  "featured": true,
+  "phaseTimeline": [
+    { "before": "09:00", "phase": "pre-open" },
+    { "before": "10:00", "phase": "entry" },
+    { "before": "10:30", "phase": "pre-event" },
+    { "before": "13:30", "phase": "first-session" },
+    { "before": "14:00", "phase": "intermission" },
+    { "before": "17:00", "phase": "second-session" },
+    { "before": "17:30", "phase": "post-event" },
+    { "before": "23:59", "phase": "exit" }
+  ],
+  "phaseLabels": {
+    "pre-open": "Pre Gates",
+    "entry": "Entry Window",
+    "pre-event": "Pre Match",
+    "first-session": "First Innings",
+    "intermission": "Innings Break",
+    "second-session": "Second Innings",
+    "post-event": "Presentation Window",
+    "exit": "Exit Flow"
+  },
+  "scheduleTemplate": [
+    { "hour": 9, "minute": 0, "title": "Gates Open", "desc": "Entry begins across all gates. Arrive early for easier screening.", "type": "logistics" },
+    { "hour": 10, "minute": 0, "title": "Toss Ceremony", "desc": "Team announcements and toss on the field.", "type": "ceremony" },
+    { "hour": 10, "minute": 30, "title": "First Innings", "desc": "Opening innings begins. Seating areas stabilize quickly after start.", "type": "match" },
+    { "hour": 13, "minute": 30, "title": "Innings Break", "desc": "Short rush window for food, restrooms, and concourse movement.", "type": "break" },
+    { "hour": 14, "minute": 0, "title": "Second Innings", "desc": "Fans return to seats as play resumes.", "type": "match" },
+    { "hour": 17, "minute": 0, "title": "Match End (Est.)", "desc": "Post-match ceremony and announcements.", "type": "ceremony" },
+    { "hour": 17, "minute": 30, "title": "Staggered Exit", "desc": "Zone-wise exit guidance begins to ease parking and gate pressure.", "type": "logistics" }
+  ],
+  "zones": [
+    { "id": "north-pavilion", "name": "North Pavilion", "lat": 23.0945, "lng": 72.596, "capacity": 25000 },
+    { "id": "south-pavilion", "name": "South Pavilion", "lat": 23.091, "lng": 72.596, "capacity": 25000 },
+    { "id": "east-gallery", "name": "East Gallery", "lat": 23.0927, "lng": 72.5985, "capacity": 30000 },
+    { "id": "west-gallery", "name": "West Gallery", "lat": 23.0927, "lng": 72.5935, "capacity": 30000 },
+    { "id": "clubhouse", "name": "Club House", "lat": 23.094, "lng": 72.5975, "capacity": 10000 },
+    { "id": "food-plaza", "name": "Food Plaza", "lat": 23.0915, "lng": 72.594, "capacity": 5000 },
+    { "id": "gate-a", "name": "Gate A", "lat": 23.095, "lng": 72.5945, "capacity": 5000 },
+    { "id": "gate-b", "name": "Gate B", "lat": 23.092, "lng": 72.599, "capacity": 5000 }
+  ],
+  "queues": [
+    { "id": "food-1", "name": "Main Food Court", "zone": "food-plaza", "icon": "🍔", "type": "food", "baseWait": 10 },
+    { "id": "food-2", "name": "North Snack Bar", "zone": "north-pavilion", "icon": "🌮", "type": "food", "baseWait": 7 },
+    { "id": "food-3", "name": "South Dosa Corner", "zone": "south-pavilion", "icon": "🥘", "type": "food", "baseWait": 8 },
+    { "id": "bev-1", "name": "East Beverage Stand", "zone": "east-gallery", "icon": "🥤", "type": "beverage", "baseWait": 4 },
+    { "id": "bev-2", "name": "West Juice Bar", "zone": "west-gallery", "icon": "🧃", "type": "beverage", "baseWait": 5 },
+    { "id": "rest-1", "name": "North Restrooms", "zone": "north-pavilion", "icon": "🚻", "type": "restroom", "baseWait": 6 },
+    { "id": "rest-2", "name": "South Restrooms", "zone": "south-pavilion", "icon": "🚻", "type": "restroom", "baseWait": 5 },
+    { "id": "rest-3", "name": "East Restrooms", "zone": "east-gallery", "icon": "🚻", "type": "restroom", "baseWait": 7 },
+    { "id": "merch-1", "name": "Official Merchandise", "zone": "west-gallery", "icon": "🛍️", "type": "merchandise", "baseWait": 12 },
+    { "id": "exit-1", "name": "Parking Gate A", "zone": "gate-a", "icon": "🚗", "type": "exit", "baseWait": 15 }
+  ],
+  "suggestedQuestions": [
+    { "label": "🚻 Nearest restroom", "question": "Where is the nearest restroom with the shortest wait right now?" },
+    { "label": "🍔 Shortest food queue", "question": "Which food stall has the shortest queue right now?" },
+    { "label": "📅 Upcoming events", "question": "What is coming up next in the event schedule?" },
+    { "label": "♿ Accessible seating", "question": "Where can I find wheelchair accessible seating and staff support?" },
+    { "label": "🚪 Emergency exits", "question": "What are the nearest emergency exits and medical points?" }
+  ],
+  "assistPrompts": [
+    { "label": "♿ Accessible Route", "question": "What is the easiest wheelchair-friendly route from Gate A to the pavilion areas?" },
+    { "label": "💺 Seating Help", "question": "Where can I find companion seating and accessible seating help right now?" },
+    { "label": "🦻 Hearing Support", "question": "Where can I get hearing assistance or a hearing loop inside the stadium?" },
+    { "label": "👁️ Visual Support", "question": "What visual assistance services are available and where do I request them?" }
+  ],
+  "accessibility": [
+    { "icon": "🦽", "title": "Wheelchair Routes", "desc": "Accessible ramps are available at Gate A and Gate B, with elevator access near both pavilion levels." },
+    { "icon": "🦻", "title": "Hearing Assistance", "desc": "Hearing loop support is available in the Club House and at the main information desk near Gate A." },
+    { "icon": "👁️", "title": "Visual Assistance", "desc": "Audio help and braille venue guides are available at information kiosks across the concourse." },
+    { "icon": "💺", "title": "Accessible Seating", "desc": "Dedicated wheelchair and companion seating is distributed across the main stands with steward support on request." }
+  ],
+  "services": {
+    "firstAidPrompt": "Where is the nearest first aid station inside Narendra Modi Stadium?",
+    "lostFoundPrompt": "How do I report a lost item at Narendra Modi Stadium and where is lost and found?",
+    "transportPrompt": "What are the best transport options for leaving Narendra Modi Stadium after the event?",
+    "firstAidInfo": "Medical hubs are placed near Gate A and Gate B with roaming response teams across the bowl.",
+    "lostFoundInfo": "Lost and found support is coordinated through the information desk near Gate A and the main operations desk.",
+    "transportInfo": "Primary pickup pressure builds around Gate A after the event. Use staggered exit guidance and follow parking/metro signage."
+  },
+  "emergency": {
+    "number": "112",
+    "medicalPoints": ["Gate A medical hub", "Gate B medical hub"],
+    "exitMessage": "Follow zone-wise exit announcements and avoid rushing the main gate."
+  }
+}

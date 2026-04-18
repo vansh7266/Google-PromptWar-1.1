@@ -1,0 +1,95 @@
+{
+  "slug": "wembley-stadium",
+  "name": "Wembley Stadium",
+  "city": "London",
+  "country": "United Kingdom",
+  "sport": "Football",
+  "tagline": "A national stadium setup with heavy pre-kickoff surges and wide concourse circulation.",
+  "lat": 51.556,
+  "lng": -0.2796,
+  "capacity": 90000,
+  "timeZone": "Europe/London",
+  "phaseTimeline": [
+    { "before": "16:30", "phase": "pre-open" },
+    { "before": "18:30", "phase": "entry" },
+    { "before": "19:45", "phase": "pre-event" },
+    { "before": "20:30", "phase": "first-session" },
+    { "before": "20:45", "phase": "intermission" },
+    { "before": "21:35", "phase": "second-session" },
+    { "before": "21:45", "phase": "post-event" },
+    { "before": "23:59", "phase": "exit" }
+  ],
+  "phaseLabels": {
+    "pre-open": "Pre Gates",
+    "entry": "Arrival Window",
+    "pre-event": "Pre Kickoff",
+    "first-session": "First Half",
+    "intermission": "Halftime",
+    "second-session": "Second Half",
+    "post-event": "Full Time",
+    "exit": "Exit Flow"
+  },
+  "scheduleTemplate": [
+    { "hour": 16, "minute": 30, "title": "Turnstiles Open", "desc": "Security and arrival begin along the outer concourse and Olympic Way.", "type": "logistics" },
+    { "hour": 18, "minute": 30, "title": "Warmups", "desc": "Pre-match warmups and concourse movement build before kickoff.", "type": "ceremony" },
+    { "hour": 19, "minute": 45, "title": "Kickoff", "desc": "Stands settle quickly after the opening whistle.", "type": "match" },
+    { "hour": 20, "minute": 30, "title": "Halftime", "desc": "Short, intense food and restroom rush across every level.", "type": "break" },
+    { "hour": 20, "minute": 45, "title": "Second Half", "desc": "Crowd flow returns to seating sections for restart.", "type": "match" },
+    { "hour": 21, "minute": 35, "title": "Full Time (Est.)", "desc": "Post-match ceremonies, interviews, and announcement window.", "type": "ceremony" },
+    { "hour": 21, "minute": 45, "title": "Managed Egress", "desc": "Exit guidance begins toward rail, bus, and rideshare corridors.", "type": "logistics" }
+  ],
+  "zones": [
+    { "id": "north-stand", "name": "North Stand", "lat": 51.5573, "lng": -0.2795, "capacity": 18000 },
+    { "id": "south-stand", "name": "South Stand", "lat": 51.5548, "lng": -0.2795, "capacity": 18000 },
+    { "id": "east-concourse", "name": "East Concourse", "lat": 51.556, "lng": -0.2777, "capacity": 14000 },
+    { "id": "west-concourse", "name": "West Concourse", "lat": 51.556, "lng": -0.2814, "capacity": 14000 },
+    { "id": "club-level", "name": "Club Level", "lat": 51.5567, "lng": -0.2796, "capacity": 10000 },
+    { "id": "olympic-way", "name": "Olympic Way", "lat": 51.5583, "lng": -0.2801, "capacity": 9000 },
+    { "id": "east-gate", "name": "East Gate", "lat": 51.5558, "lng": -0.2772, "capacity": 3500 },
+    { "id": "west-gate", "name": "West Gate", "lat": 51.5558, "lng": -0.282, "capacity": 3500 }
+  ],
+  "queues": [
+    { "id": "food-1", "name": "North Pie Hall", "zone": "north-stand", "icon": "🥧", "type": "food", "baseWait": 9 },
+    { "id": "food-2", "name": "East Street Food", "zone": "east-concourse", "icon": "🍔", "type": "food", "baseWait": 11 },
+    { "id": "food-3", "name": "Club Level Kitchen", "zone": "club-level", "icon": "🍽️", "type": "food", "baseWait": 7 },
+    { "id": "bev-1", "name": "South Beverage Bar", "zone": "south-stand", "icon": "🍺", "type": "beverage", "baseWait": 5 },
+    { "id": "bev-2", "name": "West Coffee Counter", "zone": "west-concourse", "icon": "☕", "type": "beverage", "baseWait": 4 },
+    { "id": "rest-1", "name": "North Restrooms", "zone": "north-stand", "icon": "🚻", "type": "restroom", "baseWait": 6 },
+    { "id": "rest-2", "name": "East Restrooms", "zone": "east-concourse", "icon": "🚻", "type": "restroom", "baseWait": 7 },
+    { "id": "rest-3", "name": "West Restrooms", "zone": "west-concourse", "icon": "🚻", "type": "restroom", "baseWait": 6 },
+    { "id": "merch-1", "name": "Wembley Store", "zone": "club-level", "icon": "🛍️", "type": "merchandise", "baseWait": 10 },
+    { "id": "exit-1", "name": "Olympic Way Exit", "zone": "olympic-way", "icon": "🚆", "type": "exit", "baseWait": 16 }
+  ],
+  "suggestedQuestions": [
+    { "label": "🚻 Nearest restroom", "question": "Which restroom area is moving fastest at Wembley right now?" },
+    { "label": "🍔 Food options", "question": "Which food spot has the shortest wait before kickoff?" },
+    { "label": "📅 Event timing", "question": "What stage of the event are we in right now?" },
+    { "label": "♿ Accessible help", "question": "Where do I get accessible seating and mobility assistance at Wembley?" },
+    { "label": "🚆 Leaving the venue", "question": "What is the best exit route toward rail and rideshare after full time?" }
+  ],
+  "assistPrompts": [
+    { "label": "♿ Accessible Route", "question": "What is the easiest accessible route from Olympic Way to my seating level at Wembley?" },
+    { "label": "💺 Seating Help", "question": "Where do I get companion seating support at Wembley Stadium?" },
+    { "label": "🦻 Hearing Support", "question": "Where can I request hearing assistance at Wembley Stadium?" },
+    { "label": "👁️ Visual Support", "question": "What visual assistance and sensory support is available at Wembley?" }
+  ],
+  "accessibility": [
+    { "icon": "🦽", "title": "Accessible Routes", "desc": "Step-free routes are available from the main approach, with lift access to upper seating levels and steward assistance on request." },
+    { "icon": "🦻", "title": "Hearing Support", "desc": "Hearing assistance points and induction loop support are available at guest services and key hospitality lounges." },
+    { "icon": "👁️", "title": "Visual & Sensory Support", "desc": "Sensory guidance and dedicated support staff can be reached through guest services near the main concourse." },
+    { "icon": "💺", "title": "Accessible Seating", "desc": "Accessible viewing positions and companion seating are distributed throughout the bowl with accessible restroom access nearby." }
+  ],
+  "services": {
+    "firstAidPrompt": "Where is the nearest first aid point in Wembley Stadium right now?",
+    "lostFoundPrompt": "How do I report a lost item at Wembley Stadium?",
+    "transportPrompt": "What is the best transport exit strategy from Wembley Stadium after the event?",
+    "firstAidInfo": "Guest medical assistance is coordinated near the main concourse and pitch-side response positions.",
+    "lostFoundInfo": "Lost property is routed through guest services and stadium operations after events.",
+    "transportInfo": "Wembley Park station, bus corridors, and rideshare pickup points all surge after full time, so staggered exit is the fastest strategy."
+  },
+  "emergency": {
+    "number": "999",
+    "medicalPoints": ["Main concourse medical point", "Pitch-side response team"],
+    "exitMessage": "Follow steward instructions and avoid crowding Olympic Way immediately after the event."
+  }
+}

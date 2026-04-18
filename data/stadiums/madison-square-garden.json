@@ -1,0 +1,325 @@
+{
+  "slug": "madison-square-garden",
+  "name": "Madison Square Garden",
+  "city": "New York City",
+  "country": "United States",
+  "sport": "Basketball",
+  "tagline": "Arena-scale event intelligence tuned for packed concourses and vertical circulation.",
+  "lat": 40.7505,
+  "lng": -73.9934,
+  "capacity": 19812,
+  "timeZone": "America/New_York",
+  "phaseTimeline": [
+    {
+      "before": "17:30",
+      "phase": "pre-open"
+    },
+    {
+      "before": "18:45",
+      "phase": "entry"
+    },
+    {
+      "before": "19:30",
+      "phase": "pre-event"
+    },
+    {
+      "before": "20:20",
+      "phase": "first-session"
+    },
+    {
+      "before": "20:40",
+      "phase": "intermission"
+    },
+    {
+      "before": "21:50",
+      "phase": "second-session"
+    },
+    {
+      "before": "22:00",
+      "phase": "post-event"
+    },
+    {
+      "before": "23:59",
+      "phase": "exit"
+    }
+  ],
+  "phaseLabels": {
+    "pre-open": "Pre Doors",
+    "entry": "Arrival Window",
+    "pre-event": "Pre Tip-Off",
+    "first-session": "First Half",
+    "intermission": "Halftime",
+    "second-session": "Second Half",
+    "post-event": "Final Buzzer",
+    "exit": "Exit Flow"
+  },
+  "scheduleTemplate": [
+    {
+      "hour": 17,
+      "minute": 30,
+      "title": "Doors Open",
+      "desc": "Arena entry begins and plaza screening queues start to build.",
+      "type": "logistics"
+    },
+    {
+      "hour": 18,
+      "minute": 45,
+      "title": "Warmups",
+      "desc": "Seating fills while concessions remain busy across lower concourses.",
+      "type": "ceremony"
+    },
+    {
+      "hour": 19,
+      "minute": 30,
+      "title": "Tip-Off",
+      "desc": "Most concourses settle quickly once play starts.",
+      "type": "match"
+    },
+    {
+      "hour": 20,
+      "minute": 20,
+      "title": "Halftime",
+      "desc": "The sharpest restroom and beverage spike of the night.",
+      "type": "break"
+    },
+    {
+      "hour": 20,
+      "minute": 40,
+      "title": "Second Half",
+      "desc": "Guests return to seating with heavier elevator demand on upper levels.",
+      "type": "match"
+    },
+    {
+      "hour": 21,
+      "minute": 50,
+      "title": "Final Buzzer (Est.)",
+      "desc": "Post-game programming and short linger window.",
+      "type": "ceremony"
+    },
+    {
+      "hour": 22,
+      "minute": 0,
+      "title": "Penn Station Egress",
+      "desc": "Exit routing intensifies toward Seventh Avenue and Penn Station corridors.",
+      "type": "logistics"
+    }
+  ],
+  "zones": [
+    {
+      "id": "chase-bridge",
+      "name": "Chase Bridge",
+      "lat": 40.7509,
+      "lng": -73.9934,
+      "capacity": 3200
+    },
+    {
+      "id": "lower-bowl",
+      "name": "Lower Bowl",
+      "lat": 40.7504,
+      "lng": -73.9932,
+      "capacity": 7800
+    },
+    {
+      "id": "upper-bowl",
+      "name": "Upper Bowl",
+      "lat": 40.7506,
+      "lng": -73.9936,
+      "capacity": 6100
+    },
+    {
+      "id": "east-concourse",
+      "name": "East Concourse",
+      "lat": 40.7502,
+      "lng": -73.9926,
+      "capacity": 1800
+    },
+    {
+      "id": "west-concourse",
+      "name": "West Concourse",
+      "lat": 40.7502,
+      "lng": -73.9942,
+      "capacity": 1800
+    },
+    {
+      "id": "delta-club",
+      "name": "Delta Club",
+      "lat": 40.7507,
+      "lng": -73.993,
+      "capacity": 1400
+    },
+    {
+      "id": "seventh-avenue",
+      "name": "Seventh Avenue Exit",
+      "lat": 40.7501,
+      "lng": -73.9939,
+      "capacity": 900
+    },
+    {
+      "id": "eighth-avenue",
+      "name": "Eighth Avenue Exit",
+      "lat": 40.7501,
+      "lng": -73.9948,
+      "capacity": 900
+    }
+  ],
+  "queues": [
+    {
+      "id": "food-1",
+      "name": "Garden Market",
+      "zone": "east-concourse",
+      "icon": "🍕",
+      "type": "food",
+      "baseWait": 10
+    },
+    {
+      "id": "food-2",
+      "name": "Lower Bowl Grill",
+      "zone": "lower-bowl",
+      "icon": "🌭",
+      "type": "food",
+      "baseWait": 8
+    },
+    {
+      "id": "food-3",
+      "name": "Bridge Kitchen",
+      "zone": "chase-bridge",
+      "icon": "🥪",
+      "type": "food",
+      "baseWait": 7
+    },
+    {
+      "id": "bev-1",
+      "name": "Delta Club Bar",
+      "zone": "delta-club",
+      "icon": "🍸",
+      "type": "beverage",
+      "baseWait": 4
+    },
+    {
+      "id": "bev-2",
+      "name": "Upper Bowl Bar",
+      "zone": "upper-bowl",
+      "icon": "🥤",
+      "type": "beverage",
+      "baseWait": 5
+    },
+    {
+      "id": "rest-1",
+      "name": "East Restrooms",
+      "zone": "east-concourse",
+      "icon": "🚻",
+      "type": "restroom",
+      "baseWait": 6
+    },
+    {
+      "id": "rest-2",
+      "name": "West Restrooms",
+      "zone": "west-concourse",
+      "icon": "🚻",
+      "type": "restroom",
+      "baseWait": 6
+    },
+    {
+      "id": "rest-3",
+      "name": "Bridge Restrooms",
+      "zone": "chase-bridge",
+      "icon": "🚻",
+      "type": "restroom",
+      "baseWait": 5
+    },
+    {
+      "id": "merch-1",
+      "name": "Knicks Team Store",
+      "zone": "lower-bowl",
+      "icon": "🛍️",
+      "type": "merchandise",
+      "baseWait": 9
+    },
+    {
+      "id": "exit-1",
+      "name": "Penn Station Corridor",
+      "zone": "seventh-avenue",
+      "icon": "🚇",
+      "type": "exit",
+      "baseWait": 14
+    }
+  ],
+  "suggestedQuestions": [
+    {
+      "label": "🚻 Nearest restroom",
+      "question": "Which restroom area is moving fastest inside Madison Square Garden?"
+    },
+    {
+      "label": "🍕 Food options",
+      "question": "Where is the fastest food stop in Madison Square Garden right now?"
+    },
+    {
+      "label": "📅 Event timing",
+      "question": "What stage of the game are we in right now?"
+    },
+    {
+      "label": "♿ Accessibility",
+      "question": "How do I get accessible route and seating support at Madison Square Garden?"
+    },
+    {
+      "label": "🚇 Exit strategy",
+      "question": "What is the best exit route toward Penn Station after the game?"
+    }
+  ],
+  "assistPrompts": [
+    {
+      "label": "♿ Accessible Route",
+      "question": "What is the easiest accessible route from the main entrance to the upper levels at Madison Square Garden?"
+    },
+    {
+      "label": "💺 Seating Help",
+      "question": "Where can I get accessible seating assistance at Madison Square Garden?"
+    },
+    {
+      "label": "🦻 Hearing Support",
+      "question": "Where can I request hearing assistance or guest support inside Madison Square Garden?"
+    },
+    {
+      "label": "👁️ Visual Support",
+      "question": "What visual assistance support is available at Madison Square Garden?"
+    }
+  ],
+  "accessibility": [
+    {
+      "icon": "🦽",
+      "title": "Accessible Routes",
+      "desc": "Elevator-connected routes support movement between entry, concourse, and upper seating zones with staff assistance available."
+    },
+    {
+      "icon": "🦻",
+      "title": "Hearing Support",
+      "desc": "Guest services can help coordinate hearing support and communication assistance during events."
+    },
+    {
+      "icon": "👁️",
+      "title": "Visual Assistance",
+      "desc": "Guest relations teams can guide visitors to low-stress routes and assistance points throughout the arena."
+    },
+    {
+      "icon": "💺",
+      "title": "Accessible Seating",
+      "desc": "Accessible and companion seating options are integrated across seating levels with nearby restroom access."
+    }
+  ],
+  "services": {
+    "firstAidPrompt": "Where is the nearest first aid station in Madison Square Garden?",
+    "lostFoundPrompt": "How do I report a lost item in Madison Square Garden?",
+    "transportPrompt": "What is the best way to leave Madison Square Garden toward Penn Station or rideshare?",
+    "firstAidInfo": "Medical response is coordinated on the concourse and near key entry escalator banks.",
+    "lostFoundInfo": "Lost property requests are routed through guest relations and venue operations after the event.",
+    "transportInfo": "Penn Station and Seventh Avenue corridors fill quickly after the final buzzer, so alternate exits can save time."
+  },
+  "emergency": {
+    "number": "911",
+    "medicalPoints": [
+      "Guest medical station on the concourse",
+      "Arena response team near lower bowl"
+    ],
+    "exitMessage": "Follow usher directions and keep escalator and stair landings clear during egress."
+  }
+}

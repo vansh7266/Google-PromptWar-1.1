@@ -1,0 +1,95 @@
+{
+  "slug": "melbourne-cricket-ground",
+  "name": "Melbourne Cricket Ground",
+  "city": "Melbourne",
+  "country": "Australia",
+  "sport": "Cricket",
+  "tagline": "A broad, multi-gate venue where timing the break and exit flow matters most.",
+  "lat": -37.8199,
+  "lng": 144.9834,
+  "capacity": 100024,
+  "timeZone": "Australia/Melbourne",
+  "phaseTimeline": [
+    { "before": "10:00", "phase": "pre-open" },
+    { "before": "11:00", "phase": "entry" },
+    { "before": "11:30", "phase": "pre-event" },
+    { "before": "14:20", "phase": "first-session" },
+    { "before": "14:50", "phase": "intermission" },
+    { "before": "17:50", "phase": "second-session" },
+    { "before": "18:10", "phase": "post-event" },
+    { "before": "23:59", "phase": "exit" }
+  ],
+  "phaseLabels": {
+    "pre-open": "Pre Gates",
+    "entry": "Arrival Window",
+    "pre-event": "Pre Match",
+    "first-session": "First Innings",
+    "intermission": "Innings Break",
+    "second-session": "Second Innings",
+    "post-event": "Presentation Window",
+    "exit": "Exit Flow"
+  },
+  "scheduleTemplate": [
+    { "hour": 10, "minute": 0, "title": "Gates Open", "desc": "Outer gates and concourse movement begin across the MCG perimeter.", "type": "logistics" },
+    { "hour": 11, "minute": 0, "title": "Captains & Warmups", "desc": "Pre-match activity builds while food queues begin spreading around the bowl.", "type": "ceremony" },
+    { "hour": 11, "minute": 30, "title": "First Innings", "desc": "Most crowd movement settles once play starts.", "type": "match" },
+    { "hour": 14, "minute": 20, "title": "Innings Break", "desc": "The busiest movement window for food, drinks, and restrooms.", "type": "break" },
+    { "hour": 14, "minute": 50, "title": "Second Innings", "desc": "Fans return to seats and circulation pressure eases again.", "type": "match" },
+    { "hour": 17, "minute": 50, "title": "Match End (Est.)", "desc": "Short ceremony and presentation window before exit flow begins.", "type": "ceremony" },
+    { "hour": 18, "minute": 10, "title": "Managed Exit", "desc": "Rail and tram corridors intensify as gates empty in waves.", "type": "logistics" }
+  ],
+  "zones": [
+    { "id": "great-southern", "name": "Great Southern Stand", "lat": -37.821, "lng": 144.9832, "capacity": 24000 },
+    { "id": "olympic-stand", "name": "Olympic Stand", "lat": -37.8194, "lng": 144.9854, "capacity": 18000 },
+    { "id": "ponsford-stand", "name": "Ponsford Stand", "lat": -37.8196, "lng": 144.9812, "capacity": 18000 },
+    { "id": "members-reserve", "name": "Members Reserve", "lat": -37.8187, "lng": 144.9837, "capacity": 14000 },
+    { "id": "food-hall", "name": "Concourse Food Hall", "lat": -37.8207, "lng": 144.9824, "capacity": 5000 },
+    { "id": "gate-1", "name": "Gate 1", "lat": -37.8217, "lng": 144.9829, "capacity": 3500 },
+    { "id": "gate-3", "name": "Gate 3", "lat": -37.8188, "lng": 144.9851, "capacity": 3500 },
+    { "id": "gate-6", "name": "Gate 6", "lat": -37.8192, "lng": 144.9808, "capacity": 3500 }
+  ],
+  "queues": [
+    { "id": "food-1", "name": "Boundary Grill", "zone": "food-hall", "icon": "🍔", "type": "food", "baseWait": 10 },
+    { "id": "food-2", "name": "Southern Kitchen", "zone": "great-southern", "icon": "🥙", "type": "food", "baseWait": 8 },
+    { "id": "food-3", "name": "Members Dining Express", "zone": "members-reserve", "icon": "🍽️", "type": "food", "baseWait": 7 },
+    { "id": "bev-1", "name": "Olympic Drinks Bar", "zone": "olympic-stand", "icon": "🥤", "type": "beverage", "baseWait": 4 },
+    { "id": "bev-2", "name": "Ponsford Coffee", "zone": "ponsford-stand", "icon": "☕", "type": "beverage", "baseWait": 5 },
+    { "id": "rest-1", "name": "Southern Restrooms", "zone": "great-southern", "icon": "🚻", "type": "restroom", "baseWait": 6 },
+    { "id": "rest-2", "name": "Olympic Restrooms", "zone": "olympic-stand", "icon": "🚻", "type": "restroom", "baseWait": 5 },
+    { "id": "rest-3", "name": "Ponsford Restrooms", "zone": "ponsford-stand", "icon": "🚻", "type": "restroom", "baseWait": 6 },
+    { "id": "merch-1", "name": "MCG Merchandise", "zone": "members-reserve", "icon": "🛍️", "type": "merchandise", "baseWait": 10 },
+    { "id": "exit-1", "name": "Jolimont Exit", "zone": "gate-3", "icon": "🚋", "type": "exit", "baseWait": 15 }
+  ],
+  "suggestedQuestions": [
+    { "label": "🚻 Nearest restroom", "question": "Which restroom area is moving fastest at the MCG right now?" },
+    { "label": "🍔 Food options", "question": "Which food stop has the shortest queue at the MCG right now?" },
+    { "label": "📅 Event timing", "question": "What is coming up next at the MCG today?" },
+    { "label": "♿ Accessibility", "question": "Where do I get mobility and accessible seating help at the MCG?" },
+    { "label": "🚋 Leaving the venue", "question": "What is the best exit route from the MCG toward tram and rail?" }
+  ],
+  "assistPrompts": [
+    { "label": "♿ Accessible Route", "question": "What is the easiest accessible route from Gate 1 to the MCG seating bowl?" },
+    { "label": "💺 Seating Help", "question": "Where can I get companion seating support at the MCG?" },
+    { "label": "🦻 Hearing Support", "question": "Where can I request hearing assistance at the MCG?" },
+    { "label": "👁️ Visual Support", "question": "What visual assistance services are available at the MCG?" }
+  ],
+  "accessibility": [
+    { "icon": "🦽", "title": "Accessible Routes", "desc": "Accessible paths and lifts connect the major gates, concourses, and seating areas with staff support available during arrival." },
+    { "icon": "🦻", "title": "Hearing Support", "desc": "Guest services can help direct visitors to supported seating and hearing assistance resources during the event." },
+    { "icon": "👁️", "title": "Visual Assistance", "desc": "Support teams can guide visitors to accessible paths, quieter routes, and information points across the venue." },
+    { "icon": "💺", "title": "Accessible Seating", "desc": "Accessible and companion seating positions are available throughout key stands with nearby amenities." }
+  ],
+  "services": {
+    "firstAidPrompt": "Where is the nearest first aid station inside the MCG?",
+    "lostFoundPrompt": "How do I report a lost item at the MCG?",
+    "transportPrompt": "What is the best transport route when leaving the MCG after the event?",
+    "firstAidInfo": "Medical and first-aid support is distributed near major gate approaches and concourse hubs.",
+    "lostFoundInfo": "Lost items are routed through guest services and venue operations after events.",
+    "transportInfo": "Jolimont and Richmond corridors can surge after the event, so staggered gate timing often saves time."
+  },
+  "emergency": {
+    "number": "000",
+    "medicalPoints": ["Main concourse first aid point", "Outer bowl response team"],
+    "exitMessage": "Follow steward guidance and use alternate gates if tram corridors are heavily loaded."
+  }
+}

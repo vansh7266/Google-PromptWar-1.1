@@ -14,7 +14,7 @@ RUN addgroup -g 1001 -S appgroup && \
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY data ./data
-COPY server.js index.html app.js manifest.json sw.js package.json ./
+COPY server.js index.html index.css app.js manifest.json sw.js package.json ./
 
 RUN chown -R appuser:appgroup /app
 USER appuser

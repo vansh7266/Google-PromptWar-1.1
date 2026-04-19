@@ -171,6 +171,7 @@ app.use(helmet({
       scriptSrc: [
         "'self'",
         "'unsafe-inline'",
+        "'unsafe-eval'",
         'https://maps.googleapis.com',
         'https://maps.gstatic.com',
         'https://*.googleapis.com'
@@ -198,11 +199,12 @@ app.use(helmet({
         'https://fonts.gstatic.com'
       ],
       frameSrc: ["'self'", 'https://maps.googleapis.com', 'https://maps.gstatic.com', 'https://*.google.com', 'https://*.googleapis.com'],
-      workerSrc: ["'self'", 'blob:'],
+      workerSrc: ["'self'", 'blob:', 'https://maps.googleapis.com'],
       // Local development runs on plain HTTP, so only force HTTPS upgrades in production.
       upgradeInsecureRequests: IS_PRODUCTION ? [] : null
     }
   },
+  referrerPolicy: { policy: 'no-referrer-when-downgrade' },
   strictTransportSecurity: IS_PRODUCTION
     ? { maxAge: 31536000, includeSubDomains: true }
     : false,

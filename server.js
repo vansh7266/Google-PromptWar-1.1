@@ -32,6 +32,7 @@ const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 const SIMULATION_CACHE_TTL_MS = 15 * 1000;
 const DEFAULT_STADIUM_SLUG = process.env.DEFAULT_STADIUM || 'narendra-modi-stadium';
 const STADIUMS_DIR = path.join(__dirname, 'data', 'stadiums');
+const NO_CACHE_ASSETS = new Set(['index.html', 'app.js', 'index.css', 'manifest.json', 'sw.js']);
 
 const app = express();
 
@@ -138,6 +139,10 @@ function resolveStadiumBySlug(slug = ACTIVE_DEFAULT_STADIUM) {
 
 function getRequestedStadiumSlug(req) {
   const raw = typeof req.query.stadium === 'string' ? req.query.stadium.trim() : '';
+  // Validate slug format: only lowercase letters, numbers, and hyphens
+  if (raw && !/^[a-z0-9-]+$/.test(raw)) {
+    return ACTIVE_DEFAULT_STADIUM;
+  }
   return raw || ACTIVE_DEFAULT_STADIUM;
 }
 
@@ -178,10 +183,20 @@ app.use(helmet({
         'https://maps.googleapis.com',
         'https://maps.gstatic.com',
         'https://*.google.com',
-        'https://*.googleapis.com'
+        'https://*.googleapis.com',
+        'https://img.icons8.com'
       ],
-      connectSrc: ["'self'", 'https://maps.googleapis.com'],
-      frameSrc: ["'none'"],
+      connectSrc: [
+        "'self'",
+        'https://maps.googleapis.com',
+        'https://maps.gstatic.com',
+        'https://*.googleapis.com',
+        'https://*.google.com',
+        'https://fonts.googleapis.com',
+        'https://fonts.gstatic.com'
+      ],
+      frameSrc: ["'self'", 'https://maps.googleapis.com', 'https://maps.gstatic.com', 'https://*.google.com'],
+      workerSrc: ["'self'", 'blob:'],
       // Local development runs on plain HTTP, so only force HTTPS upgrades in production.
       upgradeInsecureRequests: IS_PRODUCTION ? [] : null
     }
@@ -219,8 +234,9 @@ const chatLimiter = rateLimit({
 app.use(express.static(path.join(__dirname), {
   maxAge: '1h',
   setHeaders: (res, filePath) => {
-    if (filePath.endsWith('.html')) {
-      res.setHeader('Cache-Control', 'no-cache');
+    const fileName = path.basename(filePath);
+    if (NO_CACHE_ASSETS.has(fileName)) {
+      res.setHeader('Cache-Control', 'no-cache, must-revalidate');
     }
   }
 }));
@@ -235,27 +251,61 @@ let fallbackModel = null;
 function buildSystemInstruction() {
   return `You are StadiumPulse AI, a smart assistant for live stadiums and arenas around the world.
 
-You help attendees with:
-- Navigation and wayfinding inside the venue
-- Food, beverage, merchandise, restroom, and exit recommendations
-- Queue timing advice and crowd-avoidance suggestions
-- Event schedule and what-is-next questions
-- Emergency procedures and safety guidance
-- Accessibility services such as wheelchair, hearing, and visual support
+You help attendees with navigation, food, queues, and safety.
+You have access to TOOLS that can control the user's interface:
+- Use 'highlight_zone' if the user asks for a specific zone, gate, or stand.
+- Use 'show_queues' if the user asks about wait times for food, restrooms, etc.
+- Use 'get_accessibility' if the user asks about wheelchair or mobility support.
+- Use 'emergency_nav' for urgent medical or exit requests.
 
 Rules:
-- Be concise: 2-3 sentences max per response
-- Use 1-2 relevant emojis per response
-- Always prioritize safety information
-- Use the live queue, crowd, and venue context provided in the prompt
-- If the user asks for directions, name the best zone or gate to target
-- Be friendly but professional`;
+- Be concise: 2-3 sentences max per response.
+- Use tools whenever they help the user see what they are asking about.
+- Always prioritize safety information.`;
 }
+
+const tools = [
+  {
+    functionDeclarations: [
+      {
+        name: "highlight_zone",
+        description: "Highlights a specific zone, gate, or sector on the venue map.",
+        parameters: {
+          type: "OBJECT",
+          properties: {
+            zone_id: { type: "STRING", description: "The ID of the zone to highlight (e.g., 'north-pavilion')." }
+          },
+          required: ["zone_id"]
+        }
+      },
+      {
+        name: "show_queues",
+        description: "Switches the UI to the Queues tracker for a specific category.",
+        parameters: {
+          type: "OBJECT",
+          properties: {
+            category: { type: "STRING", enum: ["food", "beverage", "restroom", "merchandise", "exit", "all"] }
+          },
+          required: ["category"]
+        }
+      },
+      {
+        name: "get_accessibility",
+        description: "Shows the accessibility services and routes panel."
+      },
+      {
+        name: "emergency_nav",
+        description: "Highlights emergency exits and medical points on the map."
+      }
+    ]
+  }
+];
 
 function createGenerativeModel(client, modelName) {
   return client.getGenerativeModel({
     model: modelName,
-    systemInstruction: buildSystemInstruction()
+    systemInstruction: buildSystemInstruction(),
+    tools
   });
 }
 
@@ -653,6 +703,8 @@ function shouldRetryWithFallbackModel(err) {
    ================================================================ */
 
 app.get('/api/health', (_req, res) => {
+  const defaultStadium = resolveStadiumBySlug(ACTIVE_DEFAULT_STADIUM);
+  res.set('Vary', 'Accept-Encoding');
   res.json({
     status: 'ok',
     service: 'StadiumPulse',
@@ -663,6 +715,7 @@ app.get('/api/health', (_req, res) => {
     maps: !!MAPS_API_KEY,
     defaultStadium: ACTIVE_DEFAULT_STADIUM,
     stadiumCount: STADIUM_CATALOG.length,
+    venueTimeZone: defaultStadium ? defaultStadium.timeZone : 'UTC',
     timestamp: Date.now()
   });
 });
@@ -804,23 +857,49 @@ ATTENDEE QUESTION: ${sanitized}`;
   }
 
   try {
-    let reply;
-    let modelUsed = GEMINI_MODEL;
+    const modelUsed = GEMINI_MODEL;
+
+    const result = await model.generateContent({
+      contents: [{ role: 'user', parts: [{ text: contextPrompt }] }],
+      generationConfig: { temperature: 0.7, maxOutputTokens: 250 }
+    });
+
+    const response = result.response;
+
+    // Gemini responses contain EITHER text OR function calls, not both.
+    // Calling .text() when a function call is present throws an error.
+    let call = null;
+    let text = '';
 
     try {
-      reply = await generateReplyWithModel(model, contextPrompt);
-    } catch (err) {
-      if (!fallbackModel || !shouldRetryWithFallbackModel(err)) {
-        throw err;
+      const fnCalls = response.functionCalls();
+      if (fnCalls && fnCalls.length > 0) {
+        call = fnCalls[0];
       }
+    } catch (_) {
+      // No function calls in this response
+    }
 
-      reply = await generateReplyWithModel(fallbackModel, contextPrompt);
-      modelUsed = DEFAULT_GEMINI_MODEL;
+    try {
+      text = response.text() || '';
+    } catch (_) {
+      // No text in this response (function-call-only)
+    }
+
+    // If Gemini returned only a function call with no text, generate a contextual reply
+    if (!text && call) {
+      text = generateLocalAssistantReply(stadium, snapshot, sanitized);
+    }
+
+    // Final fallback if somehow both are empty
+    if (!text) {
+      text = generateLocalAssistantReply(stadium, snapshot, sanitized);
     }
 
     res.json({
-      reply,
-      source: 'gemini',
+      reply: text,
+      tool_call: call ? { action: call.name, params: call.args } : null,
+      source: call && !text ? 'gemini-tool' : 'gemini',
       mode: 'gemini',
       model: modelUsed,
       updatedAt: snapshot.generatedAt

@@ -1,0 +1,24 @@
+{
+  "name": "StadiumPulse — AI Stadium Assistant",
+  "short_name": "StadiumPulse",
+  "description": "AI-Powered Live Stadium Experience Assistant with real-time crowd management, queue tracking, and smart venue navigation powered by Google Gemini AI and Google Maps.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a73e8",
+  "lang": "en",
+  "dir": "ltr",
+  "id": "/",
+  "categories": ["sports", "navigation", "utilities"],
+  "icons": [
+    {
+      "src": "https://img.icons8.com/isometric-line/512/stadium.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "orientation": "portrait",
+  "prefer_related_applications": false
+}

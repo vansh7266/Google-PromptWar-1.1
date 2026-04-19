@@ -172,7 +172,8 @@ app.use(helmet({
         "'self'",
         "'unsafe-inline'",
         'https://maps.googleapis.com',
-        'https://maps.gstatic.com'
+        'https://maps.gstatic.com',
+        'https://*.googleapis.com'
       ],
       styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
       fontSrc: ["'self'", 'https://fonts.gstatic.com'],
@@ -184,6 +185,7 @@ app.use(helmet({
         'https://maps.gstatic.com',
         'https://*.google.com',
         'https://*.googleapis.com',
+        'https://*.gstatic.com',
         'https://img.icons8.com'
       ],
       connectSrc: [
@@ -195,7 +197,7 @@ app.use(helmet({
         'https://fonts.googleapis.com',
         'https://fonts.gstatic.com'
       ],
-      frameSrc: ["'self'", 'https://maps.googleapis.com', 'https://maps.gstatic.com', 'https://*.google.com'],
+      frameSrc: ["'self'", 'https://maps.googleapis.com', 'https://maps.gstatic.com', 'https://*.google.com', 'https://*.googleapis.com'],
       workerSrc: ["'self'", 'blob:'],
       // Local development runs on plain HTTP, so only force HTTPS upgrades in production.
       upgradeInsecureRequests: IS_PRODUCTION ? [] : null
